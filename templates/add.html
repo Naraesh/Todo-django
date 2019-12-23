@@ -1,0 +1,26 @@
+{% extends 'index.html'%}
+{%load static %}
+{%block content%}
+<div class="separate"></div>
+
+<div>
+<form action="{% url 'save'%}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" class="input" name="todo"  placeholder="ToDo here....">
+    <input type="submit" class="button">
+</form></div>
+
+<div class="separate "></div>
+<div class="display">
+    <table class="table table-bordered table-striped ">
+        <tbody>
+        {% for shows in show %}
+          <tr>
+              <td style="width:60%;text-align:center;">{{shows.txt}}</td>
+              <td> <a class="btn btn-info" href="/edit/{{ shows.id }}">Edit</a> | <a class="btn btn-danger" href="/delete/{{ shows.id }}">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock%}

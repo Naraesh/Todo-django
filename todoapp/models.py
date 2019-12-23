@@ -1,0 +1,5 @@
+from django.db import models
+
+# Create your models here.
+class todo(models.Model):
+    txt=models.CharField(max_length=250)

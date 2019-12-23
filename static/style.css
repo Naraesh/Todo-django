@@ -1,0 +1,42 @@
+.separate{
+    height: 20px;
+}
+.navbar{
+    background-color: rgb(98, 0, 255)!important;
+}
+
+
+h1{
+    color:white!important;
+}
+
+.input{
+    height:50px;
+    width:40%;
+    margin-left:25%;
+    border-radius:2px;
+    border: none;
+    padding:10px;
+    font-size:20px;
+    background-color: wheat;
+}
+.button{
+    height:50px;
+    width:10%;
+    border-radius:2px;
+    border: none;
+    font-size:20px;
+    color:white;
+    background-color: rgb(98, 0, 255);
+}
+.button:hover{
+    color: rgb(98, 0, 255);
+    font-size:21px;
+    border: 2px solid rgb(98, 0, 255) ;
+    background-color: transparent;
+
+}
+.display{
+    margin-left:10%;
+    margin-right:10%;    
+}
