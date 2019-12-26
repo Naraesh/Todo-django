@@ -1,29 +1,26 @@
 from django.shortcuts import render,redirect
-from .models import todo
+from .models import Todo
+from .form import TodoForm 
 
+# Create your views here.
 def index(request):
-    usr = todo.objects.all()
-    return render(request,'add.html',{'show':usr})
-def mod(request):
-    if request.method=="POST":
-        text=request.POST.get('todo')
+    context=Todo.objects.order_by('id')
+    form=TodoForm()
+    
+    return render(request,'index.html',{'todo':context ,'forms':form})
 
-        obj=todo()
-        obj.txt=text
-        obj.save()
-
-        return redirect('/')
-def edit(request, id):
-    usr = todo.objects.get(id=id)
-    return render(request,'edit.html', {'user':usr})
-def update(request, id):
-    if request.method == "POST":
-        emp = todo.objects.get(id=id)
-        emp.txt= request.POST.get('todo')
-        emp.save()
-    return redirect("/")
-
-def destroy(request, id):
-    employee = todo.objects.get(id=id)
-    employee.delete()
-    return redirect("/")
+def todoforms(request):
+    form= TodoForm(request.POST)
+    if form.is_valid():
+        new_todo=Todo(text=request.POST['text'])
+        new_todo.save()
+    return redirect('/')
+def update(request,id):
+    todo=Todo.objects.get(pk=id)
+    todo.complete=True
+    todo.save()
+    return redirect('/')
+def destroy(request):
+    todo=Todo.objects.all()
+    todo.delete()
+    return redirect('/')
